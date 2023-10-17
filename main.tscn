@@ -1,0 +1,48 @@
+[gd_scene load_steps=6 format=3 uid="uid://dl07brmv006yk"]
+
+[ext_resource type="Script" path="res://Main.cs" id="1_6qoea"]
+[ext_resource type="FontFile" uid="uid://dd0awha1itu2f" path="res://m5x7.ttf" id="1_m6t6p"]
+[ext_resource type="LabelSettings" uid="uid://w1hr5smc16oy" path="res://label.tres" id="1_x7a4d"]
+
+[sub_resource type="Theme" id="Theme_3lywb"]
+default_font = ExtResource("1_m6t6p")
+default_font_size = 16
+
+[sub_resource type="Theme" id="Theme_vi0x6"]
+default_font = ExtResource("1_m6t6p")
+default_font_size = 16
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_6qoea")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+theme = SubResource("Theme_3lywb")
+
+[node name="Version" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Sprite Sheet Smoother v1.0"
+label_settings = ExtResource("1_x7a4d")
+
+[node name="ImportBtn" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Import .png file"
+
+[node name="PngInfo" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "png info: Empty"
+label_settings = ExtResource("1_x7a4d")
+
+[node name="FileDialog" type="FileDialog" parent="."]
+mode = 2
+title = "Open a File"
+initial_position = 1
+size = Vector2i(503, 300)
+theme = SubResource("Theme_vi0x6")
+ok_button_text = "Open"
+dialog_hide_on_ok = true
+file_mode = 0
+access = 2
+filters = PackedStringArray("*.png")
+show_hidden_files = true
