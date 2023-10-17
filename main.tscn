@@ -3,12 +3,9 @@
 [ext_resource type="Script" path="res://Main.cs" id="1_6qoea"]
 [ext_resource type="FontFile" uid="uid://dd0awha1itu2f" path="res://m5x7.ttf" id="1_m6t6p"]
 [ext_resource type="LabelSettings" uid="uid://w1hr5smc16oy" path="res://label.tres" id="1_x7a4d"]
+[ext_resource type="Theme" uid="uid://cfwh6ocqscpbi" path="res://ui_theme.tres" id="4_sqtji"]
 
 [sub_resource type="Theme" id="Theme_3lywb"]
-default_font = ExtResource("1_m6t6p")
-default_font_size = 16
-
-[sub_resource type="Theme" id="Theme_vi0x6"]
 default_font = ExtResource("1_m6t6p")
 default_font_size = 16
 
@@ -34,15 +31,45 @@ layout_mode = 2
 text = "png info: Empty"
 label_settings = ExtResource("1_x7a4d")
 
-[node name="FileDialog" type="FileDialog" parent="."]
+[node name="HSplitContainer" type="HSplitContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="SpriteWidth" type="Label" parent="VBoxContainer/HSplitContainer"]
+layout_mode = 2
+text = "Sprite Width:"
+label_settings = ExtResource("1_x7a4d")
+
+[node name="WidthInputBox" type="SpinBox" parent="VBoxContainer/HSplitContainer"]
+layout_mode = 2
+theme = ExtResource("4_sqtji")
+min_value = 1.0
+value = 32.0
+alignment = 1
+suffix = "px"
+
+[node name="ExportBtn" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+disabled = true
+text = "Export .png file"
+
+[node name="ExportInfo" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "export info:"
+
+[node name="OpenFileDialog" type="FileDialog" parent="."]
 mode = 2
 title = "Open a File"
 initial_position = 1
 size = Vector2i(503, 300)
-theme = SubResource("Theme_vi0x6")
+theme = ExtResource("4_sqtji")
 ok_button_text = "Open"
 dialog_hide_on_ok = true
 file_mode = 0
 access = 2
 filters = PackedStringArray("*.png")
+show_hidden_files = true
+
+[node name="SaveFileDialog" type="FileDialog" parent="."]
+title = "Export png"
+access = 2
 show_hidden_files = true
