@@ -47,6 +47,18 @@ value = 32.0
 alignment = 1
 suffix = "px"
 
+[node name="HSplitContainer2" type="HSplitContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="FactorLabel" type="Label" parent="VBoxContainer/HSplitContainer2"]
+layout_mode = 2
+text = "+ new frames:"
+label_settings = ExtResource("1_x7a4d")
+
+[node name="FactorInputBox" type="SpinBox" parent="VBoxContainer/HSplitContainer2"]
+layout_mode = 2
+value = 3.0
+
 [node name="ExportBtn" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 disabled = true
@@ -55,6 +67,7 @@ text = "Export .png file"
 [node name="ExportInfo" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 text = "export info:"
+label_settings = ExtResource("1_x7a4d")
 
 [node name="OpenFileDialog" type="FileDialog" parent="."]
 mode = 2

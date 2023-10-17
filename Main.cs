@@ -4,7 +4,7 @@ using System;
 public partial class Main : Node2D
 {
   private Image img;
-  private int spriteWidth;
+  private int spriteWidth, factor;
 	public override void _Ready()
 	{
     this.GetNode<Button>("VBoxContainer/ImportBtn").Connect("pressed", Callable.From(() => {
@@ -14,6 +14,11 @@ public partial class Main : Node2D
     this.GetNode<FileDialog>("OpenFileDialog").Connect("file_selected", Callable.From<string>(path => {
       this.img = Image.LoadFromFile(path);
       this.GetNode<Label>("VBoxContainer/PngInfo").Text = imgInfo(img);
+
+      SpinBox sb = this.GetNode<SpinBox>("VBoxContainer/HSplitContainer/WidthInputBox");
+      sb.MinValue = 1;
+      sb.MaxValue = img.GetWidth() / 2;
+
       this.GetNode<Button>("VBoxContainer/ExportBtn").Disabled = false;
     }));
 
@@ -21,13 +26,18 @@ public partial class Main : Node2D
       this.spriteWidth = (int) num;
     }));
 
+    this.GetNode<SpinBox>("VBoxContainer/HSplitContainer2/FactorInputBox").Connect("value_changed", Callable.From<float>(num => {
+      this.factor = (int) num;
+    }));
+
     this.GetNode<Button>("VBoxContainer/ExportBtn").Connect("pressed", Callable.From(() => {
       this.GetNode<FileDialog>("SaveFileDialog").PopupCentered();
     }));
 
     this.GetNode<FileDialog>("SaveFileDialog").Connect("file_selected", Callable.From<string>(path => {
-      this.img.SavePng(path);
-      this.GetNode<Label>("VBoxContainer/ExportInfo").Text = $"Exported to: {path}";
+      Image newImage = ImageComputer.Interpolate(this.img, this.spriteWidth, this.factor);
+      newImage.SavePng(path);
+      this.GetNode<Label>("VBoxContainer/ExportInfo").Text = $"Exported to: {path}. {imgInfo(newImage)}";
     }));
 	}
 
