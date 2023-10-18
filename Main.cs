@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class Main : Node2D
+public partial class Main : PanelContainer
 {
   private Image img;
   private int spriteWidth, factor;
@@ -13,13 +13,15 @@ public partial class Main : Node2D
 
     this.GetNode<FileDialog>("OpenFileDialog").Connect("file_selected", Callable.From<string>(path => {
       this.img = Image.LoadFromFile(path);
-      this.GetNode<Label>("VBoxContainer/PngInfo").Text = imgInfo(img);
+      this.GetNode<Label>("VBoxContainer/PngInfo").Text = $"Imported PNG:\n{imgInfo(img)}";
 
       SpinBox sb = this.GetNode<SpinBox>("VBoxContainer/HSplitContainer/WidthInputBox");
       sb.MinValue = 1;
       sb.MaxValue = img.GetWidth() / 2;
 
       this.GetNode<Button>("VBoxContainer/ExportBtn").Disabled = false;
+      this.GetNode<FileDialog>("SaveFileDialog").CurrentDir = this.GetNode<FileDialog>("OpenFileDialog").CurrentDir;
+      this.GetNode<FileDialog>("SaveFileDialog").CurrentFile = "output.png";
     }));
 
     this.GetNode<SpinBox>("VBoxContainer/HSplitContainer/WidthInputBox").Connect("value_changed", Callable.From<float>(num => {
