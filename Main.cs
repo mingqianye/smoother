@@ -4,7 +4,7 @@ using System;
 public partial class Main : PanelContainer
 {
   private Image img;
-  private int spriteWidth, factor;
+  private int spriteWidth = 32, factor = 3;
 	public override void _Ready()
 	{
     this.GetNode<Button>("VBoxContainer/ImportBtn").Connect("pressed", Callable.From(() => {
