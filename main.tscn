@@ -157,6 +157,7 @@ text = "What is the width of your sprite?"
 [node name="WidthInputBox" type="SpinBox" parent="VBoxContainer/HSplitContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
+tooltip_text = "Your sprite sheet width should be devisible by the sprite width."
 min_value = 1.0
 value = 32.0
 allow_greater = true
@@ -169,7 +170,7 @@ layout_mode = 2
 
 [node name="FactorLabel" type="Label" parent="VBoxContainer/HSplitContainer2"]
 layout_mode = 2
-text = "How many frames to add between each frame?"
+text = "How many frames to add between each pair of frames?"
 
 [node name="FactorInputBox" type="SpinBox" parent="VBoxContainer/HSplitContainer2"]
 layout_mode = 2
